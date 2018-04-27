@@ -1,0 +1,45 @@
+Name: Jason Francis
+Date: April 1, 2018
+Peer’s project: Branching-plot Novel
+
+What is something you learned by reviewing your peer’s project?
+
+Python is full of subtle and interesting ways of accomplishing a task. I like the use of the f'' string-format structure rather than relying on the format() method.
+
+
+What is something you saw in your peer’s project that you would like to apply to your own programming projects?
+
+I don't often use the enumerate function; I should be using it all the time
+
+
+
+What suggestions would you have for your peer to improve his/her code?
+
+String formatting is always a little tricky. I would probably recommend multi-line strings (''') instead of trying to stitch everything together with \n and \.
+Also, separating the story out from the mechanics of the game often helps with readability. Is there a way to make each node in the story more generalized?
+
+
+
+What could have been clearer or better commented?
+
+It was a little tricky to follow the logic of the story from the code. Separating out and grouping the methods might help.
+
+
+
+
+Was there anything in the code that was confusing to you? If so, what?
+
+It was relatively easy to follow.
+
+
+
+
+What is something he/she could add to the README.md to make it more descriptive?
+
+The audience for the README.md is anyone who is downloading your source code from github. The README.md currently describes the game, but it doesn't do much to describe to a programmer what he/she should expect from the code.
+
+
+
+Pay a compliment to your peer based on the quality of his/her code.
+
+This project represents some clever solutions to the problem. It was instructive to me to be able to review your code.

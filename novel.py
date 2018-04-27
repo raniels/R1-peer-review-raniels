@@ -35,9 +35,7 @@ class Novel:
 
     def alive(self):
         '''checks if the player is still alive'''
-        if self.current_health > 0:
-            pass
-        else:
+        if self.current_health <= 0:
             print("You died! Better luck next time!")
             self.finish()
 
@@ -54,48 +52,38 @@ class Novel:
     def enemy1atk(self):
         '''enemy type 1 attack'''
         x1 = (random.randint(1,10) - self.current_def_max)
-        if x1 >= 0:
-            pass
         if x1 < 0:
             x1 = 0
         self.current_health = self.current_health - x1
         self.alive()
-        print("Enemy hit you for " + str(abs(x1)) + " You have " + str(self.current_health) + " health left.")
+        print("Enemy hit you for " + str(abs(x1)) + ". You have " + str(self.current_health) + " health left.")
 
     def bossatk(self):
         '''boss attack'''
         x1 = (random.randint(20,50) - self.current_def_max)
-        if x1 >= 0:
-            pass
         if x1 < 0:
             x1 = 0
         self.current_health = self.current_health - x1
         self.alive()
-        print("Enemy hit you for " + str(abs(x1)) + " You have " + str(self.current_health) + " health left.")
+        print("Enemy hit you for " + str(abs(x1)) + ". You have " + str(self.current_health) + " health left.")
 
     def enemy1_alive_check(self):
         '''checks if the enemy is still alive'''
-        if self.enemy1_health > 0:
-            pass
-        else:
+        if self.enemy1_health <= 0:
             print("Your enemy has died.")
             self.enemy1_health = 30
             self.vault1c()
 
     def enemy2_alive_check(self):
         '''checks if the 2nd enemy is still alive'''
-        if self.enemy1_health > 0:
-            pass
-        else:
+        if self.enemy1_health <= 0:
             print("Your enemy has died.")
             self.enemy1_health = 30
             self.vault3d3()
 
     def boss_alive_check(self):
         '''checks if the boss is still alive'''
-        if self.boss_health > 0:
-            pass
-        else:
+        if self.boss_health <= 0:
             print("Your enemy has died.")
             self.boss_health = 120
             self.vault1c()
@@ -103,13 +91,11 @@ class Novel:
     def perception_roll(self):
         '''perception roll'''
         self.perception_check = random.randint(self.current_perception, 100)
-
         print(str(self.perception_check))
 
     def persuasion_roll(self):
         '''persuasion roll'''
         self.persuasion_check = random.randint(self.current_persuasion, 100)
-
         print(str(self.persuasion_check))
 
     def perception_fail(self):
@@ -118,15 +104,15 @@ class Novel:
 
     def validation(self):
         '''tells the user to choose a valid answer'''
-        print("Please choose one of the options")
+        print("Please choose one of the options:")
 
     def anti_reroll(self):
         '''text for preventing rerolling perception'''
-        print("You're wasting time, do something else.")
+        print("You're wasting time. Do something else.")
 
     def persuasion_fail(self):
         '''text for failing persuasion check'''
-        print("You're attempts at peace fail and they attack.")
+        print("Your attempts at peace fail, and they attack.")
 
 
 
@@ -144,13 +130,17 @@ class Novel:
 
     def begin(self):
         '''area 1'''
-        description = "Exposition: \n   You are a treasure hunter in the search of the fabled scripts. These scripts have the power to turn you into a god.\n" \
-                        "After all of your travels and readings you have found that the locations of these scripts: the Vault of Xar.\n" \
-                        "You've been there before, but was forced to turn away due to facing opponents that were too strong for you at the time.\n" \
-                        "However, that was 6 years ago, you are much stronger than you were then. You decided to go back and perhaps try your luck.\n" \
-                        "What happens next? Well it hasn't happened yet\n \n \n" \
-                        "You find yourself at the Vault's entrance. What do you do next?"
-        options = ["You decide you care too much about your life to risk the dangers of the Vault and turn back","You decide to take a look around before going into the tomb.","You go into the vault."]
+        description = """Exposition:
+
+You are a treasure hunter in the search of the fabled scripts. These scripts have the power to turn you into a god.
+After all of your travels and readings you have found that the locations of these scripts: the Vault of Xar.
+You've been there before, but was forced to turn away due to facing opponents that were too strong for you at the time.
+However, that was 6 years ago, you are much stronger than you were then. You decided to go back and perhaps try your luck.
+What happens next? Well it hasn't happened yet.
+
+You find yourself at the Vault's entrance. What do you do next?
+"""
+        options = ["You decide you care too much about your life to risk the dangers of the Vault and turn back.","You decide to take a look around before going into the tomb.","You go into the vault."]
         option = self.show_location(description, options)
         if option == "1":
             self.finish()
@@ -195,7 +185,8 @@ class Novel:
     def perception1(self, p):
         '''perception check for area 1'''
         if p >= 95:
-            print("After looking around you find a book titled \"The Art of Persuasion\"\nAfter reading through it, you feel like you've mastered the art of persuasion")
+            print('''After looking around you find a book titled "The Art of Persuasion"
+After reading through it, you feel like you've mastered the art of persuasion''')
             self.current_persuasion = self.current_persuasion + 80
             self.start()
         elif p < 95:
@@ -204,8 +195,8 @@ class Novel:
 
     def vault1a(self):
         '''area 2'''
-        description = "You enter the tomb, before you step one foot in the entrance, You are met by one of its guards. \n" \
-        "Judging by its stance, it's here to fight you."
+        description = """You enter the tomb, before you step one foot in the entrance, You are met by one of its guards.
+Judging by its stance, it's here to fight you."""
         options = ["Persuade it to not fight you.", "Prepare to fight.", "Do nothing."]
         option = self.show_location(description, options)
         if option == "1":
@@ -300,9 +291,11 @@ class Novel:
 
     def vault2(self):
         '''area 3'''
-        description = "You make your way into the vault. After some walking you come across a fork in the path. The path left \n " \
-        "leads down a long staircase, upon close inspection, you notice that there are dried blood on the steps. \n" \
-        "The path right leads up a staircase, upon inspecting that, you notice that you can hear a deep droning coming from above. What do you do?"
+        description = """You make your way into the vault. After some walking you come across a fork in the path. The left fork
+leads down a long staircase, upon close inspection, you notice that there are dried blood on the steps.
+The right fork right leads up a staircase, upon inspecting that, you notice that you can hear a deep droning coming from above. 
+
+What do you do?"""
         options = ["Go left, down the staircase.", "Go right, up the staircase.", "Take a look around"]
         option = self.show_location(description, options)
         if option == "1":
@@ -365,9 +358,11 @@ class Novel:
 
     def vaultf(self):
         '''final area'''
-        description = "You open the door and step into the room. In the center of the room, you see a pedestal. On the pedestal are some scripts, your heart starts racing as you realize those are *the* scripts \n" \
-        "You stop thinking and run towards it. Before you can get there you are knocked down by a being of arcane power that has appeared out of nowhere. \n"
-        "It says to you \"Leave now, and I will spare you. Stay and you shall die.\" What do you do?"
+        description = """You open the door and step into the room. In the center of the room, you see a pedestal. On the pedestal are some scripts; your heart starts racing as you realize those are *the* scripts!
+You stop thinking and run towards it. Before you can get there you are knocked down by a being of arcane power that has appeared out of nowhere.
+It says to you "Leave now, and I will spare you. Stay and you shall die." 
+
+What do you do?"""
         options = ["Try to persuade the being to let you have the scripts freely.", "Fight the being.", "Take a look around.", "Do nothing."]
         option = self.show_location(description, options)
         if option == "1":
@@ -418,10 +413,10 @@ class Novel:
 
     def vaultff(self):
         '''final area: encounter passed'''
-        description = "At last you have the scripts. After reading them you are infused with the ability to become a immortal. \n" \
-        "However, you also find that instead of becoming an immortal, you can go back to the start of your journey retaining all knowledge and stats. \n" \
-        "You also find that you can go back to the start of your journey without forgetting everything, and losing the abilities you gained on the way."
-        options = ["Become immortal (Ends game)", "Restart your journey, knowledge retained (New Game+)", "Restart your jorney, forgetting everything (New Game"]
+        description = """At last you have the scripts. After reading them you are infused with the ability to become an immortal.
+However, you also find that instead of becoming an immortal, you can go back to the start of your journey retaining all knowledge and stats.
+You also find that you can go back to the start of your journey without forgetting everything, and losing the abilities you gained on the way."""
+        options = ["Become immortal (Ends game)", "Restart your journey, knowledge retained (New Game+)", "Restart your journey, forgetting everything (New Game"]
         option = self.show_location(description, options)
         if option == "1":
             print("Thanks for playing")
@@ -433,7 +428,7 @@ class Novel:
 
     def vault3d(self):
         '''area 4 down'''
-        description = "You go down the steps. Once you reach the bottom you find yourself face to face with another guard. What do you do?"
+        description = "You go down the steps. Once you reach the bottom you find yourself face-to-face with another guard. What do you do?"
         options = ["Go back up the stairs", "Fight the guard", "Try to persuade the guard to leave", "Take a look around", "Do nothing"]
         option = self.show_location(description, options)
         if option == "1":
@@ -509,7 +504,7 @@ class Novel:
     def perception4(self, p):
         '''area 4 down: perception check'''
         if p >= 20:
-            print("You find that the guard is equipped with a huge sword and take it")
+            print("You find that the guard is equipped with a huge sword; you take it")
             self.current_atk = self.current_atk + 40
             self.vault3d2()
         elif p < 20:
@@ -518,7 +513,7 @@ class Novel:
 
     def vault3d2(self):
         '''area 4 down: perception check passed'''
-        description = "You are face to face with a door. What do you do?"
+        description = "You are face-to-face with a door. What do you do?"
         options = ["Proceed through the door", "Do nothing", "Go back up the stairs"]
         option = self.show_location(description, options)
         if option == "1":
@@ -534,7 +529,7 @@ class Novel:
 
     def vault3u(self):
         '''area 4 up'''
-        description = "You find yourself in a room. You see that there is a door at the other end of the room and to the side you see a set of armor."
+        description = "You find yourself in a room. You see that there is a door at the other end of the room and, to the side, you see a suit of armor."
         options = ["Take a look around", "Go through the door", "Put on the armor", "Do nothing"]
         option = self.show_location(description, options)
         if option == "1":
